@@ -31,12 +31,20 @@ namespace LogX {
         private async void LastExecutedBJG() {
             if (OraSession != null) {
                 DateTime FromDate = new DateTime(2017, 5, 1);
-                string query = "select bjg.bjobgrpik, bj.bjobik, max(ex.startts) max_start " +
+                string query = "with last_ex as ( " +
+                    "select bjg.bjobgrpik, bj.bjobik, max(ex.startts) max_start " +
                     "from BATCHJOBEXECS ex " +
                     "join BATCHJOBS bj on bj.bjobik = ex.bjobik " +
                     "join BATCHJOBGRPS bjg on bjg.bjobgrpik = ex.bjobgrpik " +
                     "where ex.startts >= to_timestamp(:FromDate,'DD/MM/YYYY HH24:MI:SS') " +
-                    "group by bjg.bjobgrpik, bj.bjobik";
+                    "group by bjg.bjobgrpik, bj.bjobik) " +
+
+                    "select bjg.bjobgrp, bj.bjob, ex.bjobstat, lex.max_start, sub.bjobactive, sub.sort " +
+                    "from last_ex lex " +
+                    "join BATCHJOBEXECS ex on ex.bjobgrpik = lex.bjobgrpik and ex.bjobik = lex.bjobik and ex.startts = lex.max_start " +
+                    "join BATCHJOBS bj on bj.bjobik = ex.bjobik " +
+                    "join BATCHJOBGRPS bjg on bjg.bjobgrpik = ex.bjobgrpik " +
+                    "join BATCHJOBGRPSSUB sub on sub.bjobgrpik = bjg.bjobgrpik and sub.bjobik = bj.bjobik";
 
                 OracleCommand cmd = new OracleCommand(query, OraSession.OracleConnection);
                 cmd.Parameters.Add(":FromDate", OracleDbType.Varchar2).Value = FromDate;
