@@ -28,7 +28,7 @@ namespace LogX {
             if (OraSession == null) {
                 Connection Connection = new Connection(host: "DK01SV7020", port: "1521", sid: "T7020230", schema: "TESTIMMD", password: "TESTIMMD");
                 OraSession = new OraSession(Connection.String);
-                textBoxMessages.Text = OraSession.TryConnect();
+                textBoxMessages.Text = OraSession.ConnectToDatabase();
             }
         }
 

@@ -15,14 +15,10 @@ namespace LogX {
             ConnString = connString;
         }
 
-        public string TryConnect() {
-            try {
-                OracleConnection = new OracleConnection { ConnectionString = ConnString };
-                OracleConnection.Open();
-                return "Connected to Oracle database: " + OracleConnection.DatabaseName;
-            } catch (Exception ex) {
-                return ex.ToString();
-            }
+        public string ConnectToDatabase() {
+            OracleConnection = new OracleConnection { ConnectionString = ConnString };
+            OracleConnection.Open();
+            return "Connected to Oracle database: " + OracleConnection.DatabaseName;
         }
 
         public void CloseConnection() {

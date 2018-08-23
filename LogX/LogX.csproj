@@ -68,6 +68,7 @@
       <DependentUpon>FormLogX.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="OraSession.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

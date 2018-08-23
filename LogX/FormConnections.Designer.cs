@@ -37,11 +37,11 @@
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonTest = new System.Windows.Forms.Button();
-            this.textBoxConnectionDetails = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelConnection = new System.Windows.Forms.Panel();
             this.radioButtonMaster = new System.Windows.Forms.RadioButton();
             this.radioButtonTest = new System.Windows.Forms.RadioButton();
-            this.panel1.SuspendLayout();
+            this.labelConnectionDetails = new System.Windows.Forms.Label();
+            this.panelConnection.SuspendLayout();
             this.SuspendLayout();
             // 
             // radioButtonServiceName
@@ -54,6 +54,7 @@
             this.radioButtonServiceName.TabStop = true;
             this.radioButtonServiceName.Text = "Service Name";
             this.radioButtonServiceName.UseVisualStyleBackColor = true;
+            this.radioButtonServiceName.CheckedChanged += new System.EventHandler(this.RadioButtonServiceNameCheckedChanged);
             // 
             // radioButtonSID
             // 
@@ -65,6 +66,7 @@
             this.radioButtonSID.TabStop = true;
             this.radioButtonSID.Text = "SID";
             this.radioButtonSID.UseVisualStyleBackColor = true;
+            this.radioButtonSID.CheckedChanged += new System.EventHandler(this.RadioButtonSIDCheckedChanged);
             // 
             // textBoxServiceName
             // 
@@ -146,7 +148,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(195, 317);
+            this.buttonSave.Location = new System.Drawing.Point(195, 312);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 13;
@@ -155,7 +157,7 @@
             // 
             // buttonTest
             // 
-            this.buttonTest.Location = new System.Drawing.Point(114, 317);
+            this.buttonTest.Location = new System.Drawing.Point(114, 312);
             this.buttonTest.Name = "buttonTest";
             this.buttonTest.Size = new System.Drawing.Size(75, 23);
             this.buttonTest.TabIndex = 12;
@@ -163,35 +165,25 @@
             this.buttonTest.UseVisualStyleBackColor = true;
             this.buttonTest.Click += new System.EventHandler(this.ButtonTestClick);
             // 
-            // textBoxConnectionDetails
+            // panelConnection
             // 
-            this.textBoxConnectionDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxConnectionDetails.Location = new System.Drawing.Point(12, 341);
-            this.textBoxConnectionDetails.Name = "textBoxConnectionDetails";
-            this.textBoxConnectionDetails.ReadOnly = true;
-            this.textBoxConnectionDetails.Size = new System.Drawing.Size(366, 13);
-            this.textBoxConnectionDetails.TabIndex = 1;
-            this.textBoxConnectionDetails.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.textBoxUserName);
-            this.panel1.Controls.Add(this.radioButtonServiceName);
-            this.panel1.Controls.Add(this.labelPassword);
-            this.panel1.Controls.Add(this.textBoxHostName);
-            this.panel1.Controls.Add(this.radioButtonSID);
-            this.panel1.Controls.Add(this.labelUserName);
-            this.panel1.Controls.Add(this.labelHostName);
-            this.panel1.Controls.Add(this.textBoxServiceName);
-            this.panel1.Controls.Add(this.textBoxPort);
-            this.panel1.Controls.Add(this.textBoxPassword);
-            this.panel1.Controls.Add(this.textBoxSID);
-            this.panel1.Controls.Add(this.labelPort);
-            this.panel1.Location = new System.Drawing.Point(12, 29);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(366, 277);
-            this.panel1.TabIndex = 16;
+            this.panelConnection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelConnection.Controls.Add(this.textBoxUserName);
+            this.panelConnection.Controls.Add(this.radioButtonServiceName);
+            this.panelConnection.Controls.Add(this.labelPassword);
+            this.panelConnection.Controls.Add(this.textBoxHostName);
+            this.panelConnection.Controls.Add(this.radioButtonSID);
+            this.panelConnection.Controls.Add(this.labelUserName);
+            this.panelConnection.Controls.Add(this.labelHostName);
+            this.panelConnection.Controls.Add(this.textBoxServiceName);
+            this.panelConnection.Controls.Add(this.textBoxPort);
+            this.panelConnection.Controls.Add(this.textBoxPassword);
+            this.panelConnection.Controls.Add(this.textBoxSID);
+            this.panelConnection.Controls.Add(this.labelPort);
+            this.panelConnection.Location = new System.Drawing.Point(12, 29);
+            this.panelConnection.Name = "panelConnection";
+            this.panelConnection.Size = new System.Drawing.Size(366, 277);
+            this.panelConnection.TabIndex = 16;
             // 
             // radioButtonMaster
             // 
@@ -215,22 +207,30 @@
             this.radioButtonTest.Text = "Test";
             this.radioButtonTest.UseVisualStyleBackColor = true;
             // 
+            // labelConnectionDetails
+            // 
+            this.labelConnectionDetails.AutoSize = true;
+            this.labelConnectionDetails.Location = new System.Drawing.Point(16, 339);
+            this.labelConnectionDetails.Name = "labelConnectionDetails";
+            this.labelConnectionDetails.Size = new System.Drawing.Size(0, 13);
+            this.labelConnectionDetails.TabIndex = 19;
+            // 
             // FormConnections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 361);
+            this.Controls.Add(this.labelConnectionDetails);
             this.Controls.Add(this.radioButtonTest);
             this.Controls.Add(this.radioButtonMaster);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelConnection);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxConnectionDetails);
             this.Controls.Add(this.buttonTest);
             this.Name = "FormConnections";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connections";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelConnection.ResumeLayout(false);
+            this.panelConnection.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,9 +251,9 @@
         private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonTest;
-        private System.Windows.Forms.TextBox textBoxConnectionDetails;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelConnection;
         private System.Windows.Forms.RadioButton radioButtonMaster;
         private System.Windows.Forms.RadioButton radioButtonTest;
+        private System.Windows.Forms.Label labelConnectionDetails;
     }
 }
