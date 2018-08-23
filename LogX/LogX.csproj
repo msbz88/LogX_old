@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormExcludedBJG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExcludedBJG.Designer.cs">
+      <DependentUpon>FormExcludedBJG.cs</DependentUpon>
+    </Compile>
     <Compile Include="FlatFile.cs" />
     <Compile Include="FormLogX.cs">
       <SubType>Form</SubType>
@@ -59,6 +65,9 @@
     <Compile Include="OraSession.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormExcludedBJG.resx">
+      <DependentUpon>FormExcludedBJG.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogX.resx">
       <DependentUpon>FormLogX.cs</DependentUpon>
     </EmbeddedResource>

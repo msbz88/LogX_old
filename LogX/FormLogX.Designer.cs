@@ -29,7 +29,7 @@
             // 
             // buttonGo
             // 
-            this.buttonGo.Location = new System.Drawing.Point(12, 87);
+            this.buttonGo.Location = new System.Drawing.Point(12, 45);
             this.buttonGo.Name = "buttonGo";
             this.buttonGo.Size = new System.Drawing.Size(75, 23);
             this.buttonGo.TabIndex = 0;
