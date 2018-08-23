@@ -19,17 +19,21 @@ namespace LogX {
 
         private void ButtonTestClick(object sender, EventArgs e) {
             if (OraSession == null) {
-                string host = textBoxMasterHostName.Text;
-                string port = textBoxMasterPort.Text;               
-                string schema = textBoxMasterUserName.Text;
-                string password = textBoxMasterUserName.Text;
-                string sid = textBoxMasterSID.Text;
-                string serviceName = textBoxMasterServiceName.Text;
+                string host = textBoxHostName.Text;
+                string port = textBoxPort.Text;               
+                string schema = textBoxUserName.Text;
+                string password = textBoxUserName.Text;
+                string sid = textBoxSID.Text;
+                string serviceName = textBoxServiceName.Text;
 
                 Connection Connection = new Connection(host, port, schema, password, sid, serviceName);
                 OraSession = new OraSession(Connection.String);
                 textBoxConnectionDetails.Text = OraSession.TryConnect();
+            } else {
+                textBoxConnectionDetails.Text = "You are already connected to database";
             }
         }
+
+     
     }
 }
