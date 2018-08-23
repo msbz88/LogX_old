@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormConnections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConnections.Designer.cs">
+      <DependentUpon>FormConnections.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExcludedBJG.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,9 @@
     <Compile Include="OraSession.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormConnections.resx">
+      <DependentUpon>FormConnections.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExcludedBJG.resx">
       <DependentUpon>FormExcludedBJG.cs</DependentUpon>
     </EmbeddedResource>

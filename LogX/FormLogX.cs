@@ -17,7 +17,11 @@ namespace LogX {
 
         public FormLogX() {
             InitializeComponent();
-            Connect();
+            //Connect();
+        }
+
+        private void ToolStripMenuItemVersionClick(object sender, EventArgs e) {
+            MessageBox.Show(caption: "Version", text: "LogX: 1.0", buttons: MessageBoxButtons.OK);
         }
 
         private void Connect() {
@@ -29,7 +33,7 @@ namespace LogX {
         }
 
         private async void LastExecutedBJG() {
-            DateTime FromDate = new DateTime(2015, 5, 1);          
+            DateTime FromDate = new DateTime(2015, 5, 1);
             DataTable excludedBJG = await FindFailedBJG(FromDate);
             if (excludedBJG.Rows.Count > 0) {
                 FormExcludedBJG FormExcludedBJG = new FormExcludedBJG();
@@ -83,8 +87,15 @@ namespace LogX {
             return await OraSession.ExecuteQueryParallel(cmd);
         }
 
-        private void ButtonGoClick(object sender, EventArgs e) {
+        private void ButtonExecuteClick(object sender, EventArgs e) {
             LastExecutedBJG();
         }
+
+        private void ToolStripMenuItemDatabaseClick(object sender, EventArgs e) {
+            FormConnections FormConnections = new FormConnections();
+            FormConnections.Show();
+        }
+
+  
     }
 }
