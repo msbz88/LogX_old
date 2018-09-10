@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
@@ -48,37 +51,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormConnections.cs">
+    <Compile Include="Controllers\Queries.cs" />
+    <Compile Include="UI\FormConnections.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormConnections.Designer.cs">
+    <Compile Include="UI\FormConnections.Designer.cs">
       <DependentUpon>FormConnections.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormExcludedBJG.cs">
+    <Compile Include="UI\FormExcludedBJG.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormExcludedBJG.Designer.cs">
+    <Compile Include="UI\FormExcludedBJG.Designer.cs">
       <DependentUpon>FormExcludedBJG.cs</DependentUpon>
     </Compile>
-    <Compile Include="FlatFile.cs" />
-    <Compile Include="FormLogX.cs">
+    <Compile Include="Controllers\FlatFile.cs" />
+    <Compile Include="UI\FormLogX.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogX.Designer.cs">
+    <Compile Include="UI\FormLogX.Designer.cs">
       <DependentUpon>FormLogX.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connection.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="OraSession.cs" />
+    <Compile Include="Database\DbConnection.cs" />
+    <Compile Include="Controllers\Message.cs" />
+    <Compile Include="Database\OraSession.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormConnections.resx">
+    <EmbeddedResource Include="UI\FormConnections.resx">
       <DependentUpon>FormConnections.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormExcludedBJG.resx">
+    <EmbeddedResource Include="UI\FormExcludedBJG.resx">
       <DependentUpon>FormExcludedBJG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogX.resx">
+    <EmbeddedResource Include="UI\FormLogX.resx">
       <DependentUpon>FormLogX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

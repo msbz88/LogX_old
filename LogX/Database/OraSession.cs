@@ -18,7 +18,7 @@ namespace LogX {
         public string ConnectToDatabase() {
             OracleConnection = new OracleConnection { ConnectionString = ConnString };
             OracleConnection.Open();
-            return "Connected to Oracle database: " + OracleConnection.DatabaseName;
+            return "Connected to database";
         }
 
         public void CloseConnection() {

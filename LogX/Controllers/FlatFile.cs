@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace LogX {
     class FlatFile {
-        public string FilePath { get; set; }
+        public static string FilePath { get; set; }
+        public static string CacheFilePath { get; set; }
 
         public FlatFile(string filePath) {
             FilePath = filePath;
@@ -24,6 +25,11 @@ namespace LogX {
                 sb.AppendLine(string.Join("\t", fields));
             }
             File.WriteAllText(FilePath, sb.ToString());
+        }
+
+        public static void SetCacheFile() {
+            CacheFilePath = Path.GetDirectoryName(FilePath);
+            CacheFilePath += "/Cache.dat";
         }
     }
 }

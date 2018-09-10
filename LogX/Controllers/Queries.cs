@@ -1,38 +1,19 @@
-﻿using Oracle.ManagedDataAccess.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
+using System.ComponentModel;
+using System.Data;
 
-namespace LogX {
-    public partial class FormLogX : Form {
-        Connection Connection { get; set; }
-        OraSession OraSession { get; set; }
-        FlatFile FlatFile = new FlatFile(@"C:\Users\msbz\Desktop\Sharp_extracts\BJG.txt");
+namespace LogX.Controllers {
+    public class Queries {
+        DbConnection Connection { get; set; }
+        static OraSession OraSession { get; set; }
+        static FlatFile FlatFile = new FlatFile(@"C:\Users\msbz\Desktop\Sharp_extracts\BJG.txt");
 
-        public FormLogX() {
-            InitializeComponent();
-            //Connect();
-        }
-
-        private void ToolStripMenuItemVersionClick(object sender, EventArgs e) {
-            MessageBox.Show(caption: "Version", text: "LogX: 1.0", buttons: MessageBoxButtons.OK);
-        }
-
-        private void Connect() {
-            if (OraSession == null) {
-                Connection Connection = new Connection(host: "DK01SV7020", port: "1521", sid: "T7020230", schema: "TESTIMMD", password: "TESTIMMD");
-                OraSession = new OraSession(Connection.String);
-                textBoxMessages.Text = OraSession.ConnectToDatabase();
-            }
-        }
-
-        private async void LastExecutedBJG() {
+        public static async void LastExecutedBJG() {
             DateTime FromDate = new DateTime(2015, 5, 1);
             DataTable excludedBJG = await FindFailedBJG(FromDate);
             if (excludedBJG.Rows.Count > 0) {
@@ -56,15 +37,12 @@ namespace LogX {
                                 "join BATCHJOBGRPSSUB sub on sub.bjobgrpik = bjg.bjobgrpik and sub.bjobik = bj.bjobik";
                 OracleCommand cmd = new OracleCommand(query, OraSession.OracleConnection);
                 cmd.Parameters.Add(":FromDate", OracleDbType.Varchar2).Value = FromDate;
-                textBoxMessages.Text = "Calculating...";
                 DataTable dt = await OraSession.ExecuteQueryParallel(cmd);
-                textBoxMessages.Text = "Writing to file...";
                 FlatFile.Write(dt);
-                textBoxMessages.Text = "Finished";
             }
         }
 
-        private async Task<DataTable> FindFailedBJG(DateTime fromDate) {
+        private static async Task<DataTable> FindFailedBJG(DateTime fromDate) {
             string query = "with last_ex as ( " +
                             "select bjg.bjobgrpik, bj.bjobik, max(ex.startts) max_start " +
                             "from BATCHJOBEXECS ex " +
@@ -86,16 +64,5 @@ namespace LogX {
             cmd.Parameters.Add(":FromDate", OracleDbType.Varchar2).Value = fromDate;
             return await OraSession.ExecuteQueryParallel(cmd);
         }
-
-        private void ButtonExecuteClick(object sender, EventArgs e) {
-            LastExecutedBJG();
-        }
-
-        private void ToolStripMenuItemDatabaseClick(object sender, EventArgs e) {
-            FormConnections FormConnections = new FormConnections();
-            FormConnections.Show();
-        }
-
-  
     }
 }
