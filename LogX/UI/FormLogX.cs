@@ -28,10 +28,10 @@ namespace LogX {
         }
 
         private void Connect() {
-            if (File.Exists(FlatFile.CacheFilePath)) {
+            if (File.Exists(FlatFile.GetCacheFile())) {
                 try {
-                    DbConnection Connection = DbConnection.DeserializeFromFile(FlatFile.CacheFilePath);
-                    OraSession = new OraSession(Connection.ConnectionString);
+                    DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetCacheFile());
+                    OraSession = new OraSession(connection.CreateConnectionString());
                     string connectionStatus = OraSession.ConnectToDatabase();
                     Message.WriteSuccessful(labelMessages, connectionStatus);
                 } catch (Exception ex) {

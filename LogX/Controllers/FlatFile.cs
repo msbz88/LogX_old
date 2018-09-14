@@ -5,10 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LogX {
     class FlatFile {
-        public static string FilePath { get; set; }
+        public string FilePath { get; set; }
         public static string CacheFilePath { get; set; }
 
         public FlatFile(string filePath) {
@@ -27,9 +28,10 @@ namespace LogX {
             File.WriteAllText(FilePath, sb.ToString());
         }
 
-        public static void SetCacheFile() {
-            CacheFilePath = Path.GetDirectoryName(FilePath);
-            CacheFilePath += "/Cache.dat";
+        public static string GetCacheFile() {
+            string cacheFilePath = Path.GetDirectoryName(Application.ExecutablePath);
+            cacheFilePath += "/Cache.dat";
+            return cacheFilePath;
         }
     }
 }

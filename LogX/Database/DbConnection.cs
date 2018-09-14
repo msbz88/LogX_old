@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace LogX {
     public class DbConnection {
-        private string Host { get; set; }
-        private string Port { get; set; }
-        private string Schema { get; set; }
-        private string Password { get; set; }
-        private string Sid { get; set; }
-        private string ServiceName { get; set; }
-        public string ConnectionString { get; set; }
+        public string Host { get; set; }
+        public string Port { get; set; }
+        public string Schema { get; set; }
+        public string Password { get; set; }
+        public string Sid { get; set; }
+        public string ServiceName { get; set; }
 
         public DbConnection(string host, string port, string schema, string password, string sid = "", string serviceName = "") {
             Host = host;
@@ -24,7 +23,6 @@ namespace LogX {
             Password = password;
             Sid = sid;
             ServiceName = serviceName;
-            CreateConnectionString();
         }
 
         public static DbConnection DeserializeFromFile(string configFilePath) {
@@ -35,14 +33,14 @@ namespace LogX {
             File.WriteAllText(configFilePath, JsonConvert.SerializeObject(this));
         }
 
-        private void CreateConnectionString() {
+        public string CreateConnectionString() {
             string sidOrServiceName = "";
             if (Sid == "") {
                 sidOrServiceName = "SERVICE_NAME=" + ServiceName;
             } else {
                 sidOrServiceName = "SID=" + Sid;
             }
-            ConnectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(" +
+            return "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(" +
                    "HOST=" + Host + ")(" +
                    "PORT=" + Port + ")))(" +
                    "CONNECT_DATA=(" + sidOrServiceName + "))); " +

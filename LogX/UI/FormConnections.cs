@@ -17,9 +17,31 @@ namespace LogX {
 
         public FormConnections() {
             InitializeComponent();
-            radioButtonMaster.Select();
-            radioButtonSID.Select();
-        }       
+            radioButtonMaster.Select();           
+            FillFieldsIfCacheFileExists();
+            InitialRadioButtonSelect();
+        }
+
+        private void InitialRadioButtonSelect() {
+            if (textBoxServiceName.Text != "") {
+                radioButtonServiceName.Select();
+            }
+            else {
+                radioButtonSID.Select();
+            }
+        }
+
+        private void FillFieldsIfCacheFileExists() {
+            if (File.Exists(FlatFile.GetCacheFile())) {
+                DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetCacheFile());
+                textBoxHostName.Text = connection.Host;
+                textBoxPort.Text = connection.Port;
+                textBoxUserName.Text = connection.Schema;
+                textBoxPassword.Text = connection.Password;
+                textBoxSID.Text = connection.Sid;
+                textBoxServiceName.Text = connection.ServiceName;
+            }
+        }
 
         private void RadioButtonSIDCheckedChanged(object sender, EventArgs e) {
             textBoxServiceName.Enabled = false;
@@ -72,11 +94,11 @@ namespace LogX {
                 string host = textBoxHostName.Text;
                 string port = textBoxPort.Text;
                 string schema = textBoxUserName.Text;
-                string password = textBoxUserName.Text;
+                string password = textBoxPassword.Text;
                 string sid = textBoxSID.Text;
                 string serviceName = textBoxServiceName.Text;
                 Connection = new DbConnection(host, port, schema, password, sid, serviceName);
-                OraSession = new OraSession(Connection.ConnectionString);
+                OraSession = new OraSession(Connection.CreateConnectionString());
                 try {
                     string connectionStatus = OraSession.ConnectToDatabase();
                     Message.WriteSuccessful(labelConnectionDetails, connectionStatus);
@@ -90,8 +112,8 @@ namespace LogX {
             if (IsAnyTextBoxEmpty()) {
                 Message.WriteError(labelConnectionDetails, "Please fill all available fields and then test your connection");
             } else if (Connection != null) {
-                FlatFile.SetCacheFile();
-                Connection.SerializeToFile(FlatFile.CacheFilePath);
+                Connection.SerializeToFile(FlatFile.GetCacheFile());
+                Message.WriteSuccessful(labelConnectionDetails, "Saved");
             } else {
                 Message.WriteError(labelConnectionDetails, "Firstly test your connection");
             }
