@@ -17,29 +17,37 @@ namespace LogX {
 
         public FormConnections() {
             InitializeComponent();
-            radioButtonMaster.Select();           
-            FillFieldsIfCacheFileExists();
+            radioButtonMaster.Select();                      
+        }
+
+        private void FillFieldsIfCacheFileExists() {
+            if (File.Exists(FlatFile.GetDBConfigsFile())) {
+                string name = "";
+                if (radioButtonMaster.Checked) {
+                    name = "Master";
+                } else {
+                    name = "Test";
+                }
+                try {
+                    DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetDBConfigsFile(), name);
+                    textBoxHostName.Text = connection.Host;
+                    textBoxPort.Text = connection.Port;
+                    textBoxUserName.Text = connection.Schema;
+                    textBoxPassword.Text = connection.Password;
+                    textBoxSID.Text = connection.Sid;
+                    textBoxServiceName.Text = connection.ServiceName;
+                } catch (Exception) {
+
+                }
+            }
             InitialRadioButtonSelect();
         }
 
         private void InitialRadioButtonSelect() {
             if (textBoxServiceName.Text != "") {
                 radioButtonServiceName.Select();
-            }
-            else {
+            } else {
                 radioButtonSID.Select();
-            }
-        }
-
-        private void FillFieldsIfCacheFileExists() {
-            if (File.Exists(FlatFile.GetCacheFile())) {
-                DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetCacheFile());
-                textBoxHostName.Text = connection.Host;
-                textBoxPort.Text = connection.Port;
-                textBoxUserName.Text = connection.Schema;
-                textBoxPassword.Text = connection.Password;
-                textBoxSID.Text = connection.Sid;
-                textBoxServiceName.Text = connection.ServiceName;
             }
         }
 
@@ -64,10 +72,12 @@ namespace LogX {
 
         private void RadioButtonMasterCheckedChanged(object sender, EventArgs e) {
             panelConnection.BackColor = Color.FromArgb(147, 162, 189);
+            FillFieldsIfCacheFileExists();
         }
 
         private void RadioButtonTestCheckedChanged(object sender, EventArgs e) {
             panelConnection.BackColor = Color.FromArgb(219, 195, 138);
+            FillFieldsIfCacheFileExists();
         }
 
         private bool IsInteger(string input) {
@@ -91,18 +101,23 @@ namespace LogX {
             } else if (!IsInteger(textBoxPort.Text)) {
                 Message.WriteError(labelConnectionDetails, "For Port parameter the integer value is expected");
             } else {
+                string name = "";
+                if (radioButtonMaster.Checked) {
+                    name = "Master";
+                } else { name = "Test"; }              
                 string host = textBoxHostName.Text;
                 string port = textBoxPort.Text;
                 string schema = textBoxUserName.Text;
                 string password = textBoxPassword.Text;
                 string sid = textBoxSID.Text;
                 string serviceName = textBoxServiceName.Text;
-                Connection = new DbConnection(host, port, schema, password, sid, serviceName);
+                Connection = new DbConnection(name, host, port, schema, password, sid, serviceName);
                 OraSession = new OraSession(Connection.CreateConnectionString());
                 try {
                     string connectionStatus = OraSession.ConnectToDatabase();
                     Message.WriteSuccessful(labelConnectionDetails, connectionStatus);
                 } catch (Exception ex) {
+                    Connection = null;
                     Message.WriteError(labelConnectionDetails, ex.Message);
                 }
             }
@@ -112,10 +127,10 @@ namespace LogX {
             if (IsAnyTextBoxEmpty()) {
                 Message.WriteError(labelConnectionDetails, "Please fill all available fields and then test your connection");
             } else if (Connection != null) {
-                Connection.SerializeToFile(FlatFile.GetCacheFile());
+                Connection.SerializeToFile(FlatFile.GetDBConfigsFile());
                 Message.WriteSuccessful(labelConnectionDetails, "Saved");
             } else {
-                Message.WriteError(labelConnectionDetails, "Firstly test your connection");
+                Message.WriteError(labelConnectionDetails, "Firstly test your connection. Only successful connection can be saved");
             }
         }
     }

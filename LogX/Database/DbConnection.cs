@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogX {
     public class DbConnection {
+        public string Name { get; set; }
         public string Host { get; set; }
         public string Port { get; set; }
         public string Schema { get; set; }
@@ -16,7 +17,8 @@ namespace LogX {
         public string Sid { get; set; }
         public string ServiceName { get; set; }
 
-        public DbConnection(string host, string port, string schema, string password, string sid = "", string serviceName = "") {
+        public DbConnection(string name, string host, string port, string schema, string password, string sid = "", string serviceName = "") {
+            Name = name;
             Host = host;
             Port = port;
             Schema = schema;
@@ -25,12 +27,34 @@ namespace LogX {
             ServiceName = serviceName;
         }
 
-        public static DbConnection DeserializeFromFile(string configFilePath) {
-            return JsonConvert.DeserializeObject<DbConnection>(File.ReadAllText(configFilePath));
+        public static DbConnection DeserializeFromFile(string configFilePath, string name) {
+            FileInfo file = new FileInfo(configFilePath);
+            JToken jToken = null;
+            if (file.Exists) {
+                JArray jObjects = new JArray();
+                if (file.Length > 0) {
+                    string fileContent = File.ReadAllText(configFilePath);
+                    jObjects = JArray.Parse(fileContent);
+                    jToken = jObjects.First(jo => jo["Name"].ToString() == name);
+                    
+                }
+            }
+            return jToken.ToObject<DbConnection>();
         }
 
         public void SerializeToFile(string configFilePath) {
-            File.WriteAllText(configFilePath, JsonConvert.SerializeObject(this));
+            FileInfo file = new FileInfo(configFilePath);
+            if (file.Exists) {
+                JArray jObjects = new JArray();
+                if (file.Length > 0) {
+                    string fileContent = File.ReadAllText(configFilePath);
+                    jObjects = JArray.Parse(fileContent);
+                    jObjects.Where(jo => jo["Name"].ToString() == this.Name).ToList().ForEach(jo => jo.Remove()); 
+                }
+                JToken connection = JToken.FromObject(this);
+                jObjects.Add(connection);
+                File.WriteAllText(configFilePath, jObjects.ToString());
+            }
         }
 
         public string CreateConnectionString() {

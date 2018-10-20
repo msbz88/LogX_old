@@ -28,14 +28,13 @@ namespace LogX {
         }
 
         private void Connect() {
-            if (File.Exists(FlatFile.GetCacheFile())) {
+            if (File.Exists(FlatFile.GetDBConfigsFile())) {
                 try {
-                    DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetCacheFile());
+                    DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetDBConfigsFile(), "Master");
                     OraSession = new OraSession(connection.CreateConnectionString());
                     string connectionStatus = OraSession.ConnectToDatabase();
                     Message.WriteSuccessful(labelMessages, connectionStatus);
-                } catch (Exception ex) {
-                    Message.WriteError(labelMessages, ex.Message);
+                } catch (Exception) {
                 }
             } else {
                 Message.WriteError(labelMessages, "Cache file not found, please configure database connection");

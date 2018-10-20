@@ -28,7 +28,7 @@ namespace LogX {
             File.WriteAllText(FilePath, sb.ToString());
         }
 
-        public static string GetCacheFile() {
+        public static string GetDBConfigsFile() {
             string cacheFilePath = Path.GetDirectoryName(Application.ExecutablePath);
             cacheFilePath += "/Cache.dat";
             return cacheFilePath;

@@ -23,13 +23,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogX));
             this.buttonExecute = new System.Windows.Forms.Button();
             this.menuStripLogX = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkBoxLogs = new System.Windows.Forms.CheckBox();
             this.checkBoxCompare = new System.Windows.Forms.CheckBox();
             this.checkBoxRuntime = new System.Windows.Forms.CheckBox();
             this.labelBJGNames = new System.Windows.Forms.Label();
@@ -37,16 +37,18 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.labelMessages = new System.Windows.Forms.Label();
-            this.listViewMessages = new System.Windows.Forms.ListView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStripLogX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonExecute
             // 
-            this.buttonExecute.Location = new System.Drawing.Point(175, 165);
+            this.buttonExecute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonExecute.Location = new System.Drawing.Point(523, 120);
             this.buttonExecute.Name = "buttonExecute";
-            this.buttonExecute.Size = new System.Drawing.Size(75, 23);
+            this.buttonExecute.Size = new System.Drawing.Size(104, 23);
             this.buttonExecute.TabIndex = 0;
             this.buttonExecute.Text = "Execute";
             this.buttonExecute.UseVisualStyleBackColor = true;
@@ -62,7 +64,7 @@
             this.menuStripLogX.Location = new System.Drawing.Point(0, 0);
             this.menuStripLogX.Name = "menuStripLogX";
             this.menuStripLogX.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStripLogX.Size = new System.Drawing.Size(414, 24);
+            this.menuStripLogX.Size = new System.Drawing.Size(639, 24);
             this.menuStripLogX.TabIndex = 2;
             // 
             // ToolStripMenuDatabase
@@ -95,20 +97,10 @@
             this.ToolStripMenuItemVersion.Text = "Version";
             this.ToolStripMenuItemVersion.Click += new System.EventHandler(this.ToolStripMenuItemVersionClick);
             // 
-            // checkBoxLogs
-            // 
-            this.checkBoxLogs.AutoSize = true;
-            this.checkBoxLogs.Location = new System.Drawing.Point(175, 55);
-            this.checkBoxLogs.Name = "checkBoxLogs";
-            this.checkBoxLogs.Size = new System.Drawing.Size(169, 17);
-            this.checkBoxLogs.TabIndex = 3;
-            this.checkBoxLogs.Text = "Extract Batch Job Groups logs";
-            this.checkBoxLogs.UseVisualStyleBackColor = true;
-            // 
             // checkBoxCompare
             // 
             this.checkBoxCompare.AutoSize = true;
-            this.checkBoxCompare.Location = new System.Drawing.Point(175, 78);
+            this.checkBoxCompare.Location = new System.Drawing.Point(12, 78);
             this.checkBoxCompare.Name = "checkBoxCompare";
             this.checkBoxCompare.Size = new System.Drawing.Size(137, 17);
             this.checkBoxCompare.TabIndex = 4;
@@ -118,7 +110,7 @@
             // checkBoxRuntime
             // 
             this.checkBoxRuntime.AutoSize = true;
-            this.checkBoxRuntime.Location = new System.Drawing.Point(175, 101);
+            this.checkBoxRuntime.Location = new System.Drawing.Point(12, 101);
             this.checkBoxRuntime.Name = "checkBoxRuntime";
             this.checkBoxRuntime.Size = new System.Drawing.Size(239, 17);
             this.checkBoxRuntime.TabIndex = 5;
@@ -128,7 +120,7 @@
             // labelBJGNames
             // 
             this.labelBJGNames.AutoSize = true;
-            this.labelBJGNames.Location = new System.Drawing.Point(9, 39);
+            this.labelBJGNames.Location = new System.Drawing.Point(12, 133);
             this.labelBJGNames.Name = "labelBJGNames";
             this.labelBJGNames.Size = new System.Drawing.Size(70, 13);
             this.labelBJGNames.TabIndex = 8;
@@ -136,8 +128,9 @@
             // 
             // labelStartDate
             // 
+            this.labelStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelStartDate.AutoSize = true;
-            this.labelStartDate.Location = new System.Drawing.Point(296, 152);
+            this.labelStartDate.Location = new System.Drawing.Point(520, 36);
             this.labelStartDate.Name = "labelStartDate";
             this.labelStartDate.Size = new System.Drawing.Size(94, 13);
             this.labelStartDate.TabIndex = 10;
@@ -145,47 +138,59 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(299, 168);
+            this.dateTimePicker1.Location = new System.Drawing.Point(523, 52);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(104, 20);
             this.dateTimePicker1.TabIndex = 11;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 55);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 149);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(157, 353);
+            this.dataGridView1.Size = new System.Drawing.Size(615, 259);
             this.dataGridView1.TabIndex = 12;
             // 
             // labelMessages
             // 
+            this.labelMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelMessages.AutoSize = true;
-            this.labelMessages.Location = new System.Drawing.Point(12, 410);
+            this.labelMessages.Location = new System.Drawing.Point(9, 411);
             this.labelMessages.Name = "labelMessages";
             this.labelMessages.Size = new System.Drawing.Size(0, 13);
             this.labelMessages.TabIndex = 20;
             // 
-            // listViewMessages
+            // textBox1
             // 
-            this.listViewMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listViewMessages.Location = new System.Drawing.Point(175, 194);
-            this.listViewMessages.Name = "listViewMessages";
-            this.listViewMessages.Size = new System.Drawing.Size(228, 214);
-            this.listViewMessages.TabIndex = 21;
-            this.listViewMessages.UseCompatibleStateImageBehavior = false;
-            this.listViewMessages.View = System.Windows.Forms.View.Tile;
+            this.textBox1.Location = new System.Drawing.Point(12, 52);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(321, 20);
+            this.textBox1.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Path to folder";
             // 
             // FormLogX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(414, 428);
-            this.Controls.Add(this.listViewMessages);
+            this.ClientSize = new System.Drawing.Size(639, 428);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelMessages);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker1);
@@ -193,12 +198,10 @@
             this.Controls.Add(this.labelBJGNames);
             this.Controls.Add(this.checkBoxRuntime);
             this.Controls.Add(this.checkBoxCompare);
-            this.Controls.Add(this.checkBoxLogs);
             this.Controls.Add(this.buttonExecute);
             this.Controls.Add(this.menuStripLogX);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripLogX;
-            this.MaximizeBox = false;
             this.Name = "FormLogX";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LogX";
@@ -218,7 +221,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemConnection;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuAbout;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemVersion;
-        private System.Windows.Forms.CheckBox checkBoxLogs;
         private System.Windows.Forms.CheckBox checkBoxCompare;
         private System.Windows.Forms.CheckBox checkBoxRuntime;
         private System.Windows.Forms.Label labelBJGNames;
@@ -226,7 +228,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label labelMessages;
-        private System.Windows.Forms.ListView listViewMessages;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
