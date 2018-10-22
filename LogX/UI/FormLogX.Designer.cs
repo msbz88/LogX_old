@@ -37,8 +37,9 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.labelMessages = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxResultDir = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonOpenDir = new System.Windows.Forms.Button();
             this.menuStripLogX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -46,7 +47,7 @@
             // buttonExecute
             // 
             this.buttonExecute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonExecute.Location = new System.Drawing.Point(523, 120);
+            this.buttonExecute.Location = new System.Drawing.Point(531, 120);
             this.buttonExecute.Name = "buttonExecute";
             this.buttonExecute.Size = new System.Drawing.Size(104, 23);
             this.buttonExecute.TabIndex = 0;
@@ -100,7 +101,7 @@
             // checkBoxCompare
             // 
             this.checkBoxCompare.AutoSize = true;
-            this.checkBoxCompare.Location = new System.Drawing.Point(12, 78);
+            this.checkBoxCompare.Location = new System.Drawing.Point(4, 77);
             this.checkBoxCompare.Name = "checkBoxCompare";
             this.checkBoxCompare.Size = new System.Drawing.Size(137, 17);
             this.checkBoxCompare.TabIndex = 4;
@@ -110,7 +111,7 @@
             // checkBoxRuntime
             // 
             this.checkBoxRuntime.AutoSize = true;
-            this.checkBoxRuntime.Location = new System.Drawing.Point(12, 101);
+            this.checkBoxRuntime.Location = new System.Drawing.Point(4, 100);
             this.checkBoxRuntime.Name = "checkBoxRuntime";
             this.checkBoxRuntime.Size = new System.Drawing.Size(239, 17);
             this.checkBoxRuntime.TabIndex = 5;
@@ -120,7 +121,7 @@
             // labelBJGNames
             // 
             this.labelBJGNames.AutoSize = true;
-            this.labelBJGNames.Location = new System.Drawing.Point(12, 133);
+            this.labelBJGNames.Location = new System.Drawing.Point(1, 133);
             this.labelBJGNames.Name = "labelBJGNames";
             this.labelBJGNames.Size = new System.Drawing.Size(70, 13);
             this.labelBJGNames.TabIndex = 8;
@@ -130,7 +131,7 @@
             // 
             this.labelStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelStartDate.AutoSize = true;
-            this.labelStartDate.Location = new System.Drawing.Point(520, 36);
+            this.labelStartDate.Location = new System.Drawing.Point(528, 36);
             this.labelStartDate.Name = "labelStartDate";
             this.labelStartDate.Size = new System.Drawing.Size(94, 13);
             this.labelStartDate.TabIndex = 10;
@@ -140,7 +141,7 @@
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(523, 52);
+            this.dateTimePicker1.Location = new System.Drawing.Point(531, 52);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(104, 20);
             this.dateTimePicker1.TabIndex = 11;
@@ -153,9 +154,9 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 149);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 149);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(615, 259);
+            this.dataGridView1.Size = new System.Drawing.Size(631, 259);
             this.dataGridView1.TabIndex = 12;
             // 
             // labelMessages
@@ -167,21 +168,34 @@
             this.labelMessages.Size = new System.Drawing.Size(0, 13);
             this.labelMessages.TabIndex = 20;
             // 
-            // textBox1
+            // textBoxResultDir
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 52);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(321, 20);
-            this.textBox1.TabIndex = 21;
+            this.textBoxResultDir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxResultDir.Location = new System.Drawing.Point(4, 52);
+            this.textBoxResultDir.Name = "textBoxResultDir";
+            this.textBoxResultDir.Size = new System.Drawing.Size(321, 20);
+            this.textBoxResultDir.TabIndex = 21;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 35);
+            this.label1.Location = new System.Drawing.Point(1, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 22;
-            this.label1.Text = "Path to folder";
+            this.label1.Text = "Path to results folder";
+            // 
+            // buttonOpenDir
+            // 
+            this.buttonOpenDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpenDir.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonOpenDir.Location = new System.Drawing.Point(331, 52);
+            this.buttonOpenDir.Name = "buttonOpenDir";
+            this.buttonOpenDir.Size = new System.Drawing.Size(61, 20);
+            this.buttonOpenDir.TabIndex = 23;
+            this.buttonOpenDir.Text = "Browse";
+            this.buttonOpenDir.UseVisualStyleBackColor = true;
+            this.buttonOpenDir.Click += new System.EventHandler(this.ButtonOpenDirClick);
             // 
             // FormLogX
             // 
@@ -189,8 +203,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(639, 428);
+            this.Controls.Add(this.buttonOpenDir);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxResultDir);
             this.Controls.Add(this.labelMessages);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker1);
@@ -228,8 +243,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label labelMessages;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxResultDir;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonOpenDir;
     }
 }
 

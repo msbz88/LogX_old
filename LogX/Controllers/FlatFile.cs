@@ -30,7 +30,7 @@ namespace LogX {
 
         public static string GetDBConfigsFile() {
             string cacheFilePath = Path.GetDirectoryName(Application.ExecutablePath);
-            cacheFilePath += "/Cache.dat";
+            cacheFilePath += "/DbConnections.cnf";
             return cacheFilePath;
         }
     }

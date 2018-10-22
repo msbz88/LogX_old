@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LogX {
-    public class Message {
+    public class InfoMessage {
         static Timer Timer = new Timer();
 
         public static void WriteSuccessful(Label label, string message) {

@@ -24,7 +24,7 @@ namespace LogX {
 
         private void ToolStripMenuItemVersionClick(object sender, EventArgs e) {
             MessageBox.Show(icon: MessageBoxIcon.Information, buttons: MessageBoxButtons.OK,
-                caption: "Version", text: "Hope the best version\nLogX: 1.0\nUpdated " + DateTime.Today.Month + "." + DateTime.Today.Year);
+                caption: "Version", text: "LogX: 1.0\nUpdated " + DateTime.Today.Month + "." + DateTime.Today.Year);
         }
 
         private void Connect() {
@@ -33,11 +33,11 @@ namespace LogX {
                     DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetDBConfigsFile(), "Master");
                     OraSession = new OraSession(connection.CreateConnectionString());
                     string connectionStatus = OraSession.ConnectToDatabase();
-                    Message.WriteSuccessful(labelMessages, connectionStatus);
+                    InfoMessage.WriteSuccessful(labelMessages, connectionStatus);
                 } catch (Exception) {
                 }
             } else {
-                Message.WriteError(labelMessages, "Cache file not found, please configure database connection");
+                InfoMessage.WriteError(labelMessages, "Connections to databases do not set, please configure them");
             }
         }
 
@@ -52,6 +52,17 @@ namespace LogX {
             FormConnections.ShowDialog();
         }
 
+        private void ButtonOpenDirClick(object sender, EventArgs e) {
+            var OF = new OpenFileDialog {
+                InitialDirectory = "C:\\",
+                Filter = "All files (*) | *.*"
+            };
 
+            if (OF.ShowDialog() == DialogResult.OK) {
+                OF.FilterIndex = 0;
+                OF.RestoreDirectory = true;
+                textBoxResultDir.Text = (OF.FileName);
+            }
+        }
     }
 }

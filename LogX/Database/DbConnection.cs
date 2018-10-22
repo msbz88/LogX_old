@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LogX {
     public class DbConnection {
@@ -28,33 +24,32 @@ namespace LogX {
         }
 
         public static DbConnection DeserializeFromFile(string configFilePath, string name) {
-            FileInfo file = new FileInfo(configFilePath);
+            JArray jObjects = new JArray();
             JToken jToken = null;
-            if (file.Exists) {
-                JArray jObjects = new JArray();
-                if (file.Length > 0) {
-                    string fileContent = File.ReadAllText(configFilePath);
+            FileInfo file = new FileInfo(configFilePath);
+            if (file.Exists && file.Length > 0) {
+                string fileContent = File.ReadAllText(configFilePath);
+                try {
                     jObjects = JArray.Parse(fileContent);
-                    jToken = jObjects.First(jo => jo["Name"].ToString() == name);
-                    
-                }
-            }
+                    jToken = jObjects.FirstOrDefault(jo => jo["Name"].ToString() == name);
+                } catch (Exception) { throw new InvalidDataException();}             
+            } else { throw new InvalidOperationException(); }
             return jToken.ToObject<DbConnection>();
         }
 
         public void SerializeToFile(string configFilePath) {
+            JArray jObjects = new JArray();
             FileInfo file = new FileInfo(configFilePath);
-            if (file.Exists) {
-                JArray jObjects = new JArray();
-                if (file.Length > 0) {
-                    string fileContent = File.ReadAllText(configFilePath);
+            if (file.Exists && file.Length > 0) {
+                string fileContent = File.ReadAllText(configFilePath);
+                try {
                     jObjects = JArray.Parse(fileContent);
-                    jObjects.Where(jo => jo["Name"].ToString() == this.Name).ToList().ForEach(jo => jo.Remove()); 
-                }
-                JToken connection = JToken.FromObject(this);
-                jObjects.Add(connection);
-                File.WriteAllText(configFilePath, jObjects.ToString());
+                    jObjects.Where(jo => jo["Name"].ToString() == this.Name).ToList().ForEach(jo => jo.Remove());
+                } catch (Exception) {file.Delete(); }            
             }
+            JToken connection = JToken.FromObject(this);
+            jObjects.Add(connection);
+            File.WriteAllText(configFilePath, jObjects.ToString());
         }
 
         public string CreateConnectionString() {
