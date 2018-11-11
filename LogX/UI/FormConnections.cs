@@ -103,21 +103,20 @@ namespace LogX {
             } else if (!IsInteger(textBoxPort.Text)) {
                 InfoMessage.WriteError(labelConnectionDetails, "For Port parameter the integer value is expected");
             } else {
-                string name = "";
+                string connectionName = "";
                 if (radioButtonMaster.Checked) {
-                    name = "Master";
-                } else { name = "Test"; }
+                    connectionName = "Master";
+                } else { connectionName = "Test"; }
                 string host = textBoxHostName.Text;
                 string port = textBoxPort.Text;
                 string schema = textBoxUserName.Text;
                 string password = textBoxPassword.Text;
                 string sid = textBoxSID.Text;
                 string serviceName = textBoxServiceName.Text;
-                Connection = new DbConnection(name, host, port, schema, password, sid, serviceName);
-                OraSession = new OraSession(Connection.CreateConnectionString());
+                Connection = new DbConnection(connectionName, host, port, schema, password, sid, serviceName);                
                 try {
-                    string connectionStatus = OraSession.ConnectToDatabase();
-                    InfoMessage.WriteSuccessful(labelConnectionDetails, connectionStatus);
+                    OraSession = new OraSession(Connection.CreateConnectionString());
+                    InfoMessage.WriteSuccessful(labelConnectionDetails, "Connected to " + connectionName + " database");
                 } catch (Exception ex) {
                     // Connection = null;
                     InfoMessage.WriteError(labelConnectionDetails, ex.Message);

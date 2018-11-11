@@ -29,10 +29,8 @@ namespace LogX {
             FileInfo file = new FileInfo(configFilePath);
             if (file.Exists && file.Length > 0) {
                 string fileContent = File.ReadAllText(configFilePath);
-                try {
-                    jObjects = JArray.Parse(fileContent);
-                    jToken = jObjects.FirstOrDefault(jo => jo["Name"].ToString() == name);
-                } catch (Exception) { throw new InvalidDataException();}             
+                jObjects = JArray.Parse(fileContent);
+                jToken = jObjects.First(jo => jo["Name"].ToString() == name);
             } else { throw new InvalidOperationException(); }
             return jToken.ToObject<DbConnection>();
         }
@@ -45,7 +43,7 @@ namespace LogX {
                 try {
                     jObjects = JArray.Parse(fileContent);
                     jObjects.Where(jo => jo["Name"].ToString() == this.Name).ToList().ForEach(jo => jo.Remove());
-                } catch (Exception) {file.Delete(); }            
+                } catch (Exception) { file.Delete(); }
             }
             JToken connection = JToken.FromObject(this);
             jObjects.Add(connection);

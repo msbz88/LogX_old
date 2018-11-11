@@ -13,12 +13,12 @@ namespace LogX {
 
         public OraSession(string connString) {
             ConnString = connString;
+            ConnectToDatabase();
         }
 
-        public string ConnectToDatabase() {
+        public void ConnectToDatabase() {
             OracleConnection = new OracleConnection { ConnectionString = ConnString };
             OracleConnection.Open();
-            return "Connected to database";
         }
 
         public void CloseConnection() {

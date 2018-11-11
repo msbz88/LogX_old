@@ -36,10 +36,10 @@
             this.labelStartDate = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.labelMessages = new System.Windows.Forms.Label();
             this.textBoxResultDir = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonOpenDir = new System.Windows.Forms.Button();
+            this.richTextBoxMessages = new System.Windows.Forms.RichTextBox();
             this.menuStripLogX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -156,17 +156,8 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(4, 149);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(631, 259);
+            this.dataGridView1.Size = new System.Drawing.Size(631, 230);
             this.dataGridView1.TabIndex = 12;
-            // 
-            // labelMessages
-            // 
-            this.labelMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelMessages.AutoSize = true;
-            this.labelMessages.Location = new System.Drawing.Point(9, 411);
-            this.labelMessages.Name = "labelMessages";
-            this.labelMessages.Size = new System.Drawing.Size(0, 13);
-            this.labelMessages.TabIndex = 20;
             // 
             // textBoxResultDir
             // 
@@ -197,16 +188,25 @@
             this.buttonOpenDir.UseVisualStyleBackColor = true;
             this.buttonOpenDir.Click += new System.EventHandler(this.ButtonOpenDirClick);
             // 
+            // richTextBoxMessages
+            // 
+            this.richTextBoxMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextBoxMessages.Location = new System.Drawing.Point(4, 385);
+            this.richTextBoxMessages.Name = "richTextBoxMessages";
+            this.richTextBoxMessages.Size = new System.Drawing.Size(631, 39);
+            this.richTextBoxMessages.TabIndex = 24;
+            this.richTextBoxMessages.Text = "";
+            // 
             // FormLogX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(639, 428);
+            this.Controls.Add(this.richTextBoxMessages);
             this.Controls.Add(this.buttonOpenDir);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxResultDir);
-            this.Controls.Add(this.labelMessages);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.labelStartDate);
@@ -242,10 +242,10 @@
         private System.Windows.Forms.Label labelStartDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label labelMessages;
         private System.Windows.Forms.TextBox textBoxResultDir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonOpenDir;
+        private System.Windows.Forms.RichTextBox richTextBoxMessages;
     }
 }
 

@@ -13,7 +13,8 @@ using LogX.Controllers;
 
 namespace LogX {
     public partial class FormLogX : Form {
-        OraSession OraSession { get; set; }
+        OraSession MasterSession { get; set; }
+        OraSession TestSession { get; set; }
 
         public FormLogX() {
             InitializeComponent();
@@ -28,23 +29,35 @@ namespace LogX {
         }
 
         private void Connect() {
-            if (File.Exists(FlatFile.GetDBConfigsFile())) {
-                try {
-                    DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetDBConfigsFile(), "Master");
-                    OraSession = new OraSession(connection.CreateConnectionString());
-                    string connectionStatus = OraSession.ConnectToDatabase();
-                    InfoMessage.WriteSuccessful(labelMessages, connectionStatus);
-                } catch (Exception) {
-                }
-            } else {
-                InfoMessage.WriteError(labelMessages, "Connections to databases do not set, please configure them");
-            }
+            MasterSession = VerifyConnection("Master");
+            TestSession = VerifyConnection("Test");
         }
 
+        private OraSession VerifyConnection(string connectionName) {
+            try {
+                try {
+                    DbConnection connection = DbConnection.DeserializeFromFile(FlatFile.GetDBConfigsFile(), connectionName);
+                    OraSession oraSession = new OraSession(connection.CreateConnectionString());
+                    InfoMessage.WriteSuccessful(richTextBoxMessages, "Connected to " + connectionName + " database");
+                    return oraSession;
+                } catch (InvalidOperationException) {
+                    InfoMessage.WriteError(richTextBoxMessages, "Failed connect to " + connectionName + ": Connection does not set, please configure it");
+                    return null;
+                } catch (InvalidDataException) {
+                    InfoMessage.WriteError(richTextBoxMessages, "Failed connect to " + connectionName + ": Saved connection has errors, please reconfigure it");
+                    return null;
+                }
+            } catch (Exception ex) {
+                InfoMessage.WriteError(richTextBoxMessages, "Failed connect to " + connectionName + ": " + ex.Message);
+                return null;
+            }
+        }
+ 
+
         private void ButtonExecuteClick(object sender, EventArgs e) {
-            labelMessages.Text = "Calculating...";
+            richTextBoxMessages.Text = "Calculating...";
             Queries.LastExecutedBJG();
-            labelMessages.Text = "Finished";
+            richTextBoxMessages.Text = "Finished";
         }
 
         private void ToolStripMenuItemConnectionClick(object sender, EventArgs e) {
@@ -57,7 +70,6 @@ namespace LogX {
                 InitialDirectory = "C:\\",
                 Filter = "All files (*) | *.*"
             };
-
             if (OF.ShowDialog() == DialogResult.OK) {
                 OF.FilterIndex = 0;
                 OF.RestoreDirectory = true;
