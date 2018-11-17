@@ -1,5 +1,5 @@
-﻿namespace LogX {
-    partial class FormConnections {
+﻿namespace LogX.Views {
+    partial class FormDbConnections {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,12 +23,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConnections));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDbConnections));
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonTest = new System.Windows.Forms.Button();
             this.radioButtonMaster = new System.Windows.Forms.RadioButton();
             this.radioButtonTest = new System.Windows.Forms.RadioButton();
-            this.labelConnectionDetails = new System.Windows.Forms.Label();
+            this.labelConnInfoMessages = new System.Windows.Forms.Label();
             this.panelConnection = new System.Windows.Forms.Panel();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.radioButtonServiceName = new System.Windows.Forms.RadioButton();
@@ -47,28 +47,26 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(178, 312);
+            this.buttonSave.Location = new System.Drawing.Point(194, 312);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 13;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
             // 
             // buttonTest
             // 
-            this.buttonTest.Location = new System.Drawing.Point(97, 312);
+            this.buttonTest.Location = new System.Drawing.Point(113, 312);
             this.buttonTest.Name = "buttonTest";
             this.buttonTest.Size = new System.Drawing.Size(75, 23);
             this.buttonTest.TabIndex = 12;
             this.buttonTest.Text = "Test";
             this.buttonTest.UseVisualStyleBackColor = true;
-            this.buttonTest.Click += new System.EventHandler(this.ButtonTestClick);
             // 
             // radioButtonMaster
             // 
             this.radioButtonMaster.AutoSize = true;
-            this.radioButtonMaster.Location = new System.Drawing.Point(97, 12);
+            this.radioButtonMaster.Location = new System.Drawing.Point(131, 12);
             this.radioButtonMaster.Name = "radioButtonMaster";
             this.radioButtonMaster.Size = new System.Drawing.Size(57, 17);
             this.radioButtonMaster.TabIndex = 17;
@@ -80,7 +78,7 @@
             // radioButtonTest
             // 
             this.radioButtonTest.AutoSize = true;
-            this.radioButtonTest.Location = new System.Drawing.Point(178, 13);
+            this.radioButtonTest.Location = new System.Drawing.Point(212, 13);
             this.radioButtonTest.Name = "radioButtonTest";
             this.radioButtonTest.Size = new System.Drawing.Size(46, 17);
             this.radioButtonTest.TabIndex = 18;
@@ -89,13 +87,13 @@
             this.radioButtonTest.UseVisualStyleBackColor = true;
             this.radioButtonTest.CheckedChanged += new System.EventHandler(this.RadioButtonTestCheckedChanged);
             // 
-            // labelConnectionDetails
+            // labelConnInfoMessages
             // 
-            this.labelConnectionDetails.AutoSize = true;
-            this.labelConnectionDetails.Location = new System.Drawing.Point(12, 339);
-            this.labelConnectionDetails.Name = "labelConnectionDetails";
-            this.labelConnectionDetails.Size = new System.Drawing.Size(0, 13);
-            this.labelConnectionDetails.TabIndex = 19;
+            this.labelConnInfoMessages.AutoSize = true;
+            this.labelConnInfoMessages.Location = new System.Drawing.Point(12, 339);
+            this.labelConnInfoMessages.Name = "labelConnInfoMessages";
+            this.labelConnInfoMessages.Size = new System.Drawing.Size(0, 13);
+            this.labelConnInfoMessages.TabIndex = 19;
             // 
             // panelConnection
             // 
@@ -113,14 +111,14 @@
             this.panelConnection.Controls.Add(this.labelPort);
             this.panelConnection.Location = new System.Drawing.Point(6, 36);
             this.panelConnection.Name = "panelConnection";
-            this.panelConnection.Size = new System.Drawing.Size(343, 270);
+            this.panelConnection.Size = new System.Drawing.Size(379, 270);
             this.panelConnection.TabIndex = 16;
             // 
             // textBoxUserName
             // 
             this.textBoxUserName.Location = new System.Drawing.Point(6, 24);
             this.textBoxUserName.Name = "textBoxUserName";
-            this.textBoxUserName.Size = new System.Drawing.Size(331, 20);
+            this.textBoxUserName.Size = new System.Drawing.Size(368, 20);
             this.textBoxUserName.TabIndex = 0;
             // 
             // radioButtonServiceName
@@ -148,7 +146,7 @@
             // 
             this.textBoxHostName.Location = new System.Drawing.Point(6, 102);
             this.textBoxHostName.Name = "textBoxHostName";
-            this.textBoxHostName.Size = new System.Drawing.Size(331, 20);
+            this.textBoxHostName.Size = new System.Drawing.Size(368, 20);
             this.textBoxHostName.TabIndex = 4;
             // 
             // radioButtonSID
@@ -185,28 +183,28 @@
             // 
             this.textBoxServiceName.Location = new System.Drawing.Point(6, 239);
             this.textBoxServiceName.Name = "textBoxServiceName";
-            this.textBoxServiceName.Size = new System.Drawing.Size(331, 20);
+            this.textBoxServiceName.Size = new System.Drawing.Size(368, 20);
             this.textBoxServiceName.TabIndex = 9;
             // 
             // textBoxPort
             // 
             this.textBoxPort.Location = new System.Drawing.Point(6, 141);
             this.textBoxPort.Name = "textBoxPort";
-            this.textBoxPort.Size = new System.Drawing.Size(331, 20);
+            this.textBoxPort.Size = new System.Drawing.Size(368, 20);
             this.textBoxPort.TabIndex = 6;
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(6, 63);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(331, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(368, 20);
             this.textBoxPassword.TabIndex = 2;
             // 
             // textBoxSID
             // 
             this.textBoxSID.Location = new System.Drawing.Point(6, 190);
             this.textBoxSID.Name = "textBoxSID";
-            this.textBoxSID.Size = new System.Drawing.Size(331, 20);
+            this.textBoxSID.Size = new System.Drawing.Size(368, 20);
             this.textBoxSID.TabIndex = 8;
             // 
             // labelPort
@@ -218,14 +216,14 @@
             this.labelPort.TabIndex = 7;
             this.labelPort.Text = "Port";
             // 
-            // FormConnections
+            // FormDbConnections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(357, 361);
+            this.ClientSize = new System.Drawing.Size(389, 361);
             this.Controls.Add(this.panelConnection);
-            this.Controls.Add(this.labelConnectionDetails);
+            this.Controls.Add(this.labelConnInfoMessages);
             this.Controls.Add(this.radioButtonTest);
             this.Controls.Add(this.radioButtonMaster);
             this.Controls.Add(this.buttonSave);
@@ -234,7 +232,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormConnections";
+            this.Name = "FormDbConnections";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connections";
             this.panelConnection.ResumeLayout(false);
@@ -249,7 +247,7 @@
         private System.Windows.Forms.Button buttonTest;
         private System.Windows.Forms.RadioButton radioButtonMaster;
         private System.Windows.Forms.RadioButton radioButtonTest;
-        private System.Windows.Forms.Label labelConnectionDetails;
+        private System.Windows.Forms.Label labelConnInfoMessages;
         private System.Windows.Forms.Panel panelConnection;
         private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.RadioButton radioButtonServiceName;

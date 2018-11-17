@@ -39,6 +39,7 @@
       <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
@@ -52,38 +53,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Queries.cs" />
-    <Compile Include="UI\FormConnections.cs">
+    <Compile Include="Presenters\DbConnectionPresenter.cs" />
+    <Compile Include="Presenters\Queries.cs" />
+    <Compile Include="Presenters\SerializerPresenter.cs" />
+    <Compile Include="Views\FormDbConnections.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FormConnections.Designer.cs">
-      <DependentUpon>FormConnections.cs</DependentUpon>
+    <Compile Include="Views\FormDbConnections.Designer.cs">
+      <DependentUpon>FormDbConnections.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FormExcludedBJG.cs">
+    <Compile Include="Views\FormExcludedBJG.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FormExcludedBJG.Designer.cs">
+    <Compile Include="Views\FormExcludedBJG.Designer.cs">
       <DependentUpon>FormExcludedBJG.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\FlatFile.cs" />
-    <Compile Include="UI\FormLogX.cs">
+    <Compile Include="Presenters\FlatFile.cs" />
+    <Compile Include="Views\FormLogX.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FormLogX.Designer.cs">
+    <Compile Include="Views\FormLogX.Designer.cs">
       <DependentUpon>FormLogX.cs</DependentUpon>
     </Compile>
-    <Compile Include="Database\DbConnection.cs" />
-    <Compile Include="Controllers\InfoMessage.cs" />
-    <Compile Include="Database\OraSession.cs" />
+    <Compile Include="Models\DbConnection.cs" />
+    <Compile Include="Models\OraSession.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="UI\FormConnections.resx">
-      <DependentUpon>FormConnections.cs</DependentUpon>
+    <Compile Include="Views\IDbConnectionView.cs" />
+    <EmbeddedResource Include="Views\FormDbConnections.resx">
+      <DependentUpon>FormDbConnections.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FormExcludedBJG.resx">
+    <EmbeddedResource Include="Views\FormExcludedBJG.resx">
       <DependentUpon>FormExcludedBJG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FormLogX.resx">
+    <EmbeddedResource Include="Views\FormLogX.resx">
       <DependentUpon>FormLogX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

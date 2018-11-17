@@ -22,18 +22,6 @@ namespace LogX {
             ClearTimer(label);
         }
 
-        public static void WriteSuccessful(RichTextBox richTextBox, string message) {
-            richTextBox.ForeColor = Color.Green;
-            richTextBox.AppendText(message + Environment.NewLine);
-            ClearTimer(richTextBox);
-        }
-
-        public static void WriteError(RichTextBox richTextBox, string message) {
-            richTextBox.ForeColor = Color.Red;
-            richTextBox.AppendText(message + Environment.NewLine);
-            ClearTimer(richTextBox);
-        }
-
         private static void ClearTimer(Label label) {
             Timer.Stop();
             Timer.Interval = 10000;
@@ -46,15 +34,5 @@ namespace LogX {
             Timer.Start();
         }
 
-        private static void ClearTimer(RichTextBox richTextBox) {
-            Timer.Stop();
-            Timer.Interval = 15000;
-            Timer.Tick += (s, e) => {
-                Timer.Stop();
-                richTextBox.Text = "";
-                richTextBox.ForeColor = Color.Black;
-            };
-            Timer.Start();
-        }
     }
 }

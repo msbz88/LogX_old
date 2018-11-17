@@ -12,8 +12,9 @@ namespace LogX.Controllers {
         DbConnection Connection { get; set; }
         static OraSession OraSession { get; set; }
         static FlatFile FlatFile = new FlatFile(@"C:\Users\msbz\Desktop\Sharp_extracts\BJG.txt");
-
+        
         public static async void LastExecutedBJG() {
+            /*
             DateTime FromDate = new DateTime(2015, 5, 1);
             DataTable excludedBJG = await FindFailedBJG(FromDate);
             if (excludedBJG.Rows.Count > 0) {
@@ -39,8 +40,9 @@ namespace LogX.Controllers {
                 cmd.Parameters.Add(":FromDate", OracleDbType.Varchar2).Value = FromDate;
                 DataTable dt = await OraSession.ExecuteQueryParallel(cmd);
                 FlatFile.Write(dt);
-            }
+            }*/
         }
+        
 
         private static async Task<DataTable> FindFailedBJG(DateTime fromDate) {
             string query = "with last_ex as ( " +
